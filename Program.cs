@@ -1,4 +1,5 @@
 ﻿using InTheEndCsharp.값타입및선언;
+using InTheEndCsharp.배열;
 using InTheEndCsharp.연산자;
 using InTheEndCsharp.조건문;
 
@@ -15,5 +16,10 @@ using InTheEndCsharp.조건문;
 // 비트연산자.실행();
 // Null병합연산자.실행();
 
-if_삼항연산자.실행();
-switch문.실행();
+// if_삼항연산자.실행();
+// switch문.실행();
+
+배열선언및초기화.실행();
+배열요소접근.실행();
+반복문.실행();
+다차원배열_Array클래스.실행();
