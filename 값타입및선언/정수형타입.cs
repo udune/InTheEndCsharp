@@ -1,4 +1,4 @@
-namespace InTheEndCsharp;
+namespace InTheEndCsharp.값타입및선언;
 
 public class 정수형타입
 {

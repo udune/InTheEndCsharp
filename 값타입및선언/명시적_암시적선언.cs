@@ -1,4 +1,4 @@
-namespace InTheEndCsharp;
+namespace InTheEndCsharp.값타입및선언;
 
 public class 명시적_암시적선언
 {
