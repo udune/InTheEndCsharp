@@ -4,6 +4,7 @@ using InTheEndCsharp.문자열;
 using InTheEndCsharp.배열;
 using InTheEndCsharp.연산자;
 using InTheEndCsharp.인터페이스;
+using InTheEndCsharp.제네릭;
 using InTheEndCsharp.조건문;
 using InTheEndCsharp.클래스;
 using InTheEndCsharp.타입캐스팅;
@@ -73,7 +74,14 @@ Action[] practiceArray =
     // 타입변환_ConvertClass.실행,
     // 타입변환_is.실행
     
-    구조체_class와비교.실행
+    // 구조체_class와비교.실행
+    
+    제네릭정의및기초.실행,
+    제네릭_제약조건_struct_class.실행,
+    제네릭_제약조건_new.실행,
+    제네릭_제약조건_classtype.실행,
+    제네릭_제약조건_interface.실행,
+    제네릭_class.실행
 ];
 
 foreach (var practice in practiceArray)
