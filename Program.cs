@@ -1,4 +1,5 @@
 ﻿using InTheEndCsharp.값타입및선언;
+using InTheEndCsharp.구조체;
 using InTheEndCsharp.문자열;
 using InTheEndCsharp.배열;
 using InTheEndCsharp.연산자;
@@ -66,11 +67,13 @@ Action[] practiceArray =
     // 인터페이스_명시적구현.실행,
     // 인터페이스_디폴트구현.실행
     
-    타입명시적변환.실행,
-    오브젝트_박싱_언박싱.실행,
-    타입변환.실행,
-    타입변환_ConvertClass.실행,
-    타입변환_is.실행
+    // 타입명시적변환.실행,
+    // 오브젝트_박싱_언박싱.실행,
+    // 타입변환.실행,
+    // 타입변환_ConvertClass.실행,
+    // 타입변환_is.실행
+    
+    구조체_class와비교.실행
 ];
 
 foreach (var practice in practiceArray)
