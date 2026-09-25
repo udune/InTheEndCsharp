@@ -2,6 +2,7 @@
 using InTheEndCsharp.구조체;
 using InTheEndCsharp.델리게이트;
 using InTheEndCsharp.람다;
+using InTheEndCsharp.린큐;
 using InTheEndCsharp.문자열;
 using InTheEndCsharp.배열;
 using InTheEndCsharp.연산자;
@@ -98,17 +99,31 @@ Action[] practiceArray =
     
     // 람다표현식.실행,
     
-    열거자_Enumerator.실행,
-    열거형_Enumerable.실행,
-    컬렉션_List_정의_생성_요소접근.실행,
-    컬렉션_List_초기화.실행,
-    컬렉션_List_요소삽입.실행,
-    컬렉션_List_요소삭제.실행,
-    컬렉션_List_요소검색.실행,
-    컬렉션_List_역순및정렬.실행,
-    컬렉션_List_기타메서드.실행,
-    컬렉션_Queue.실행,
-    컬렉션_Stack.실행
+    // 열거자_Enumerator.실행,
+    // 열거형_Enumerable.실행,
+    // 컬렉션_List_정의_생성_요소접근.실행,
+    // 컬렉션_List_초기화.실행,
+    // 컬렉션_List_요소삽입.실행,
+    // 컬렉션_List_요소삭제.실행,
+    // 컬렉션_List_요소검색.실행,
+    // 컬렉션_List_역순및정렬.실행,
+    // 컬렉션_List_기타메서드.실행,
+    // 컬렉션_Queue.실행,
+    // 컬렉션_Stack.실행
+    
+    린큐_정의.실행,
+    린큐_쿼리_구조및기초.실행,
+    린큐_쿼리_select.실행,
+    린큐_쿼리_where.실행,
+    린큐_쿼리_let.실행,
+    린큐_쿼리_orderby.실행,
+    린큐_메소드_Select.실행,
+    린큐_메소드_SelectMany.실행,
+    린큐_메소드_Where.실행,
+    린큐_메소드_OrderBy_메소드체이닝.실행,
+    린큐_메소드_GroupBy.실행,
+    린큐_쿼리_join.실행,
+    린큐_메소드_join.실행
 ];
 
 foreach (var practice in practiceArray)
