@@ -5,6 +5,7 @@ using InTheEndCsharp.람다;
 using InTheEndCsharp.린큐;
 using InTheEndCsharp.문자열;
 using InTheEndCsharp.배열;
+using InTheEndCsharp.비동기;
 using InTheEndCsharp.스레드;
 using InTheEndCsharp.연산자;
 using InTheEndCsharp.열거및컬렉션;
@@ -142,7 +143,10 @@ Action[] practiceArray =
     // 스레드_임계영역_Monitor_2.실행,
     // 스레드_임계영역_Mutex.실행,
     // 스레드_semaphore.실행,
-    스레드풀.실행
+    // 스레드풀.실행,
+    
+    // 비동기_async_await.실행,
+    비동기_진행흐름_UI가없는환경.실행
 ];
 
 foreach (var practice in practiceArray)

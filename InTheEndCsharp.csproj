@@ -7,4 +7,11 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <!-- AsyncUI는 별도 WinForms 프로젝트이므로 이 콘솔 프로젝트의 빌드 대상에서 제외한다. -->
+    <ItemGroup>
+      <Compile Remove="AsyncUI\**" />
+      <EmbeddedResource Remove="AsyncUI\**" />
+      <None Remove="AsyncUI\**" />
+    </ItemGroup>
+
 </Project>
