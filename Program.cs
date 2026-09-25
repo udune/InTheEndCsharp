@@ -7,6 +7,7 @@ using InTheEndCsharp.문자열;
 using InTheEndCsharp.배열;
 using InTheEndCsharp.연산자;
 using InTheEndCsharp.열거및컬렉션;
+using InTheEndCsharp.예외처리;
 using InTheEndCsharp.인터페이스;
 using InTheEndCsharp.제네릭;
 using InTheEndCsharp.조건문;
@@ -111,19 +112,25 @@ Action[] practiceArray =
     // 컬렉션_Queue.실행,
     // 컬렉션_Stack.실행
     
-    린큐_정의.실행,
-    린큐_쿼리_구조및기초.실행,
-    린큐_쿼리_select.실행,
-    린큐_쿼리_where.실행,
-    린큐_쿼리_let.실행,
-    린큐_쿼리_orderby.실행,
-    린큐_메소드_Select.실행,
-    린큐_메소드_SelectMany.실행,
-    린큐_메소드_Where.실행,
-    린큐_메소드_OrderBy_메소드체이닝.실행,
-    린큐_메소드_GroupBy.실행,
-    린큐_쿼리_join.실행,
-    린큐_메소드_join.실행
+    // 린큐_정의.실행,
+    // 린큐_쿼리_구조및기초.실행,
+    // 린큐_쿼리_select.실행,
+    // 린큐_쿼리_where.실행,
+    // 린큐_쿼리_let.실행,
+    // 린큐_쿼리_orderby.실행,
+    // 린큐_메소드_Select.실행,
+    // 린큐_메소드_SelectMany.실행,
+    // 린큐_메소드_Where.실행,
+    // 린큐_메소드_OrderBy_메소드체이닝.실행,
+    // 린큐_메소드_GroupBy.실행,
+    // 린큐_쿼리_join.실행,
+    // 린큐_메소드_join.실행,
+    
+    예외처리_정의및trycatch.실행,
+    예외처리_예외객체.실행,
+    예외처리_finally.실행,
+    사용자정의예외처리.실행,
+    사용자정의예외처리의장점.실행
 ];
 
 foreach (var practice in practiceArray)
