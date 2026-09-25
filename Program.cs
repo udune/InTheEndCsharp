@@ -1,6 +1,7 @@
 ﻿using InTheEndCsharp.값타입및선언;
 using InTheEndCsharp.구조체;
 using InTheEndCsharp.델리게이트;
+using InTheEndCsharp.람다;
 using InTheEndCsharp.문자열;
 using InTheEndCsharp.배열;
 using InTheEndCsharp.연산자;
@@ -84,15 +85,17 @@ Action[] practiceArray =
     // 제네릭_제약조건_interface.실행,
     // 제네릭_class.실행
     
-    델리게이트_정의및매개변수가없는.실행,
-    델리게이트_매개변수가있는_반환값이있는.실행,
-    델리게이트_멀티캐스팅.실행,
-    델리게이트_이벤트.실행,
-    델리게이트_함수매개변수.실행,
-    델리게이트_Func.실행,
-    델리게이트_Action.실행,
-    델리게이트_Predicate.실행,
-    델리게이트_Comparison.실행
+    // 델리게이트_정의및매개변수가없는.실행,
+    // 델리게이트_매개변수가있는_반환값이있는.실행,
+    // 델리게이트_멀티캐스팅.실행,
+    // 델리게이트_이벤트.실행,
+    // 델리게이트_함수매개변수.실행,
+    // 델리게이트_Func.실행,
+    // 델리게이트_Action.실행,
+    // 델리게이트_Predicate.실행,
+    // 델리게이트_Comparison.실행,
+    
+    람다표현식.실행
 ];
 
 foreach (var practice in practiceArray)
