@@ -5,6 +5,7 @@ using InTheEndCsharp.람다;
 using InTheEndCsharp.린큐;
 using InTheEndCsharp.문자열;
 using InTheEndCsharp.배열;
+using InTheEndCsharp.스레드;
 using InTheEndCsharp.연산자;
 using InTheEndCsharp.열거및컬렉션;
 using InTheEndCsharp.예외처리;
@@ -126,11 +127,22 @@ Action[] practiceArray =
     // 린큐_쿼리_join.실행,
     // 린큐_메소드_join.실행,
     
-    예외처리_정의및trycatch.실행,
-    예외처리_예외객체.실행,
-    예외처리_finally.실행,
-    사용자정의예외처리.실행,
-    사용자정의예외처리의장점.실행
+    // 예외처리_정의및trycatch.실행,
+    // 예외처리_예외객체.실행,
+    // 예외처리_finally.실행,
+    // 사용자정의예외처리.실행,
+    // 사용자정의예외처리의장점.실행,
+    
+    // 스레드_정의_현재스레드확인.실행,
+    // 스레드_생성및시작.실행,
+    // 스레드_실습.실행,
+    // 스레드_경쟁상태.실행,
+    // 스레드_임계영역_lock.실행,
+    // 스레드_임계영역_Monitor_1.실행,
+    // 스레드_임계영역_Monitor_2.실행,
+    // 스레드_임계영역_Mutex.실행,
+    // 스레드_semaphore.실행,
+    스레드풀.실행
 ];
 
 foreach (var practice in practiceArray)
