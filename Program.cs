@@ -5,6 +5,7 @@ using InTheEndCsharp.람다;
 using InTheEndCsharp.문자열;
 using InTheEndCsharp.배열;
 using InTheEndCsharp.연산자;
+using InTheEndCsharp.열거및컬렉션;
 using InTheEndCsharp.인터페이스;
 using InTheEndCsharp.제네릭;
 using InTheEndCsharp.조건문;
@@ -95,7 +96,19 @@ Action[] practiceArray =
     // 델리게이트_Predicate.실행,
     // 델리게이트_Comparison.실행,
     
-    람다표현식.실행
+    // 람다표현식.실행,
+    
+    열거자_Enumerator.실행,
+    열거형_Enumerable.실행,
+    컬렉션_List_정의_생성_요소접근.실행,
+    컬렉션_List_초기화.실행,
+    컬렉션_List_요소삽입.실행,
+    컬렉션_List_요소삭제.실행,
+    컬렉션_List_요소검색.실행,
+    컬렉션_List_역순및정렬.실행,
+    컬렉션_List_기타메서드.실행,
+    컬렉션_Queue.실행,
+    컬렉션_Stack.실행
 ];
 
 foreach (var practice in practiceArray)
