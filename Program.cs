@@ -19,6 +19,7 @@ using InTheEndCsharp.제네릭;
 using InTheEndCsharp.조건문;
 using InTheEndCsharp.클래스;
 using InTheEndCsharp.타입캐스팅;
+using InTheEndCsharp.테스트코드작성;
 
 const string line = "==============================";
 
@@ -174,16 +175,18 @@ Action[] practiceArray =
     // AOP_AspectOrientedProgramming구현.실행,
     // CustomAttribute실전활용예제_Parameter.실행,
     
-    DI사용하지않는수동주입.실행,
-    DI컨테이너생성및생명주기.실행,
-    DI적용_서비스로케이터패턴_생성자주입.실행,
-    DI인터페이스적용.실행,
-    DI리팩토링.실행,
-    DIAddScoped생명주기및AddTransient_AddSingleton과비교.실행,
-    DI서비스구현체직접등록하기.실행,
-    DI서비스구현체직접등록하기_Provider사용.실행,
-    DI제네릭타입서비스등록방법_Closed_Open.실행,
-    환경변수의존성주입을사용하여불러오기_appsettings_json.실행
+    // DI사용하지않는수동주입.실행,
+    // DI컨테이너생성및생명주기.실행,
+    // DI적용_서비스로케이터패턴_생성자주입.실행,
+    // DI인터페이스적용.실행,
+    // DI리팩토링.실행,
+    // DIAddScoped생명주기및AddTransient_AddSingleton과비교.실행,
+    // DI서비스구현체직접등록하기.실행,
+    // DI서비스구현체직접등록하기_Provider사용.실행,
+    // DI제네릭타입서비스등록방법_Closed_Open.실행,
+    // 환경변수의존성주입을사용하여불러오기_appsettings_json.실행,
+    
+    일반적인테스트_테스트코드의중요성.실행
 ];
 
 foreach (var practice in practiceArray)
