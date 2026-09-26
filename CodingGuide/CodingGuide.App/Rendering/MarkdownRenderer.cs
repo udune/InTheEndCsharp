@@ -70,7 +70,7 @@ internal static partial class MarkdownRenderer
         return fd;
     }
 
-    static IEnumerable<Block> ParseBlocks(string markdown)
+    internal static IEnumerable<Block> ParseBlocks(string markdown)
     {
         var lines = markdown.Replace("\r\n", "\n").Split('\n');
         int i = 0;
@@ -120,13 +120,18 @@ internal static partial class MarkdownRenderer
             if (IsBullet(t) || IsNumbered(t))
             {
                 bool numbered = IsNumbered(t);
+                // "3. ..." 처럼 중간 번호로 시작하면 그 번호부터 매긴다.
+                // (AI 답변은 항목 사이에 빈 줄을 넣어 목록이 나뉘는 경우가 많아, 모두 1로 보이는 것을 막는다)
+                int start = numbered && int.TryParse(t[..t.IndexOf('.')], out int n) ? n : 1;
                 var items = new List<string>();
                 while (i < lines.Length && (numbered ? IsNumbered(lines[i].Trim()) : IsBullet(lines[i].Trim())))
                 {
                     string item = lines[i++].Trim();
                     items.Add(numbered ? NumberedPrefix().Replace(item, "") : item[2..]);
                 }
-                yield return ListBlock(items, numbered);
+                var listBlock = ListBlock(items, numbered);
+                listBlock.StartIndex = Math.Max(1, start);
+                yield return listBlock;
                 continue;
             }
 
@@ -147,7 +152,7 @@ internal static partial class MarkdownRenderer
     static bool IsSpecial(string t) =>
         t.StartsWith("```") || t.StartsWith('#') || t.StartsWith('>') || t.StartsWith('|') || IsBullet(t) || IsNumbered(t);
 
-    static Paragraph Heading(string text, int level)
+    internal static Paragraph Heading(string text, int level)
     {
         var p = new Paragraph
         {
@@ -314,7 +319,7 @@ internal static partial class MarkdownRenderer
         if (pos < text.Length) inlines.Add(new Run(text[pos..]));
     }
 
-    static Brush Brush(string key) => (Brush)Application.Current.Resources[key];
+    internal static Brush Brush(string key) => (Brush)Application.Current.Resources[key];
 
     [GeneratedRegex(@"`([^`]+)`|\*\*(.+?)\*\*")]
     private static partial Regex InlineToken();

@@ -4,6 +4,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
+using System.Text;
+using CodingGuide.App.Ai;
 using CodingGuide.App.Rendering;
 using CodingGuide.App.Running;
 using CodingGuide.Core.Knowledge;
@@ -34,6 +36,20 @@ public partial class MainWindow : Window
     private int _outputChars;
     private double _bottomHeight = 300;
 
+    // 로컬 AI
+    const string AnswerHistoryId = "__answer__";
+    private readonly LocalLlm _llm = new();
+    private readonly Stopwatch _askWatch = new();
+    private readonly StringBuilder _answerText = new();
+    private readonly Lock _answerLock = new();
+    private AnswerDocument? _answer;
+    private CancellationTokenSource? _askCts;
+    private bool _showingAnswer;
+    private bool _answerDirty;
+    private int _answerTokens;
+    private int _answerSourceCount;
+    private double _firstTokenSeconds = -1;
+
     public MainWindow()
     {
         InitializeComponent();
@@ -51,7 +67,11 @@ public partial class MainWindow : Window
         _searchDebounce = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(120) };
         _searchDebounce.Tick += (_, _) => RunSearch();
         _outputPump = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(80) };
-        _outputPump.Tick += (_, _) => PumpOutput();
+        _outputPump.Tick += (_, _) =>
+        {
+            PumpOutput();
+            RefreshAnswer();
+        };
         _outputPump.Start();
 
         if (Environment.GetCommandLineArgs().Contains("--selftest"))
@@ -63,7 +83,12 @@ public partial class MainWindow : Window
         BuildToc();
         ShowToc();
         Open(_kb.ById[HomeDocId], addHistory: false);
-        Loaded += (_, _) => SearchBox.Focus();
+        Loaded += async (_, _) =>
+        {
+            SearchBox.Focus();
+            await LoadLlmAsync();
+        };
+        Closed += (_, _) => _askCts?.Cancel();
     }
 
     // ── 목차 ───────────────────────────────────────────────
@@ -171,6 +196,10 @@ public partial class MainWindow : Window
                 MoveResultSelection(-1);
                 e.Handled = true;
                 break;
+            case Key.Enter when Keyboard.Modifiers.HasFlag(ModifierKeys.Control):
+                _ = AskAsync();
+                e.Handled = true;
+                break;
             case Key.Enter:
                 RunSearch();
                 e.Handled = true;
@@ -200,8 +229,11 @@ public partial class MainWindow : Window
 
     private void Open(KnowledgeDoc doc, bool addHistory = true)
     {
-        if (addHistory && _current != null && _current.Id != doc.Id)
+        if (addHistory && _showingAnswer)
+            _history.Push(AnswerHistoryId);
+        else if (addHistory && _current != null && _current.Id != doc.Id)
             _history.Push(_current.Id);
+        _showingAnswer = false;
         _current = doc;
         BackButton.IsEnabled = _history.Count > 0;
         Breadcrumb.Text = $"{doc.Category}  ›  {doc.Title}";
@@ -261,7 +293,166 @@ public partial class MainWindow : Window
     private void GoBack()
     {
         if (_history.Count == 0) return;
-        Open(_kb.ById[_history.Pop()], addHistory: false);
+        string id = _history.Pop();
+        if (id == AnswerHistoryId)
+        {
+            if (_answer != null) ShowAnswer();
+            else GoBack();
+            return;
+        }
+        Open(_kb.ById[id], addHistory: false);
+    }
+
+    // ── 로컬 AI 질문 ────────────────────────────────────────
+
+    private async Task LoadLlmAsync()
+    {
+        string? path = LocalLlm.FindModel();
+        if (path is null)
+        {
+            AiStatus.Text = "AI 꺼짐 · models 폴더에 모델(.gguf)이 없습니다";
+            AskButton.ToolTip = "실행 폴더의 models 폴더에 GGUF 모델 파일을 넣으면 AI 답변을 쓸 수 있습니다.";
+            return;
+        }
+
+        AiStatus.Text = "AI 모델 불러오는 중…";
+        var progress = new Progress<float>(p => AiStatus.Text = $"AI 모델 불러오는 중… {p:P0}");
+        try
+        {
+            await Task.Run(() => _llm.LoadAsync(path, progress));
+            AiStatus.Text = $"AI 준비됨 · {_llm.ModelName} · CPU · 오프라인";
+            AskButton.IsEnabled = true;
+        }
+        catch (Exception ex)
+        {
+            AiStatus.Text = "AI 모델을 불러오지 못했습니다 (메모리 부족 또는 파일 손상)";
+            AskButton.ToolTip = ex.Message;
+        }
+    }
+
+    private async void AskButton_Click(object sender, RoutedEventArgs e) => await AskAsync();
+
+    private void StopButton_Click(object sender, RoutedEventArgs e) => _askCts?.Cancel();
+
+    private async Task AskAsync()
+    {
+        string question = SearchBox.Text.Trim();
+        if (!_llm.IsLoaded || _askCts != null) return;
+        if (question.Length == 0)
+        {
+            SearchBox.Focus();
+            return;
+        }
+
+        // 질문으로 가이드 문서를 찾아 근거 자료로 붙인다 (RAG).
+        var rag = RagPromptBuilder.Build(question, _engine);
+
+        if (_showingAnswer) { }
+        else if (_current != null) _history.Push(_current.Id);
+
+        _answer = new AnswerDocument(question, rag.Sources, id => Open(_kb.ById[id]));
+        lock (_answerLock)
+        {
+            _answerText.Clear();
+            _answerTokens = 0;
+            _firstTokenSeconds = -1;
+            _answerDirty = false;
+        }
+        _answerSourceCount = rag.Sources.Count;
+        ShowAnswer();
+
+        _askCts = new CancellationTokenSource();
+        var token = _askCts.Token;
+        AskButton.IsEnabled = false;
+        StopButton.Visibility = Visibility.Visible;
+        _askWatch.Restart();
+        RefreshAnswer();
+
+        string result;
+        try
+        {
+            // 추론은 CPU를 오래 쓰므로 UI 스레드가 아닌 곳에서 돌리고, 결과는 타이머가 주기적으로 화면에 옮긴다.
+            await Task.Run(async () =>
+            {
+                await foreach (var piece in _llm.AskAsync(rag.SystemPrompt, rag.UserPrompt, token))
+                {
+                    lock (_answerLock)
+                    {
+                        if (_firstTokenSeconds < 0) _firstTokenSeconds = _askWatch.Elapsed.TotalSeconds;
+                        _answerText.Append(piece);
+                        _answerTokens++;
+                        _answerDirty = true;
+                    }
+                }
+            }, token);
+            result = "완료";
+        }
+        catch (OperationCanceledException)
+        {
+            result = "중지됨";
+        }
+        catch (Exception ex)
+        {
+            result = $"오류: {ex.Message}";
+        }
+
+        _askWatch.Stop();
+        _askCts.Dispose();
+        _askCts = null;
+        AskButton.IsEnabled = true;
+        StopButton.Visibility = Visibility.Collapsed;
+        RefreshAnswer();
+
+        double first = _firstTokenSeconds < 0 ? _askWatch.Elapsed.TotalSeconds : _firstTokenSeconds;
+        _answer.SetStatus($"{result} · {_answerTokens}토큰 · 첫 응답 {first:F0}초, 전체 {_askWatch.Elapsed.TotalSeconds:F0}초 · " +
+                          "AI가 만든 답변은 틀릴 수 있으니 아래 참고 문서로 확인하세요.");
+    }
+
+    private void ShowAnswer()
+    {
+        if (_answer is null) return;
+        _showingAnswer = true;
+        _current = null;
+        lock (_answerLock) _answerDirty = _answerText.Length > 0;   // 다른 문서를 보는 동안 쌓인 내용을 다시 그린다
+        DocViewer.Document = _answer.Document;
+        Breadcrumb.Text = "AI 답변";
+        BackButton.IsEnabled = _history.Count > 0;
+        UpdateRunButton();
+        SetBottomPanelVisible(false);
+    }
+
+    /// <summary>생성 중인 답변을 화면에 반영한다 (80ms 타이머에서 호출).</summary>
+    private void RefreshAnswer()
+    {
+        if (_answer is null || _askCts is null && !_answerDirty) return;
+
+        string? text = null;
+        int tokens;
+        double first;
+        lock (_answerLock)
+        {
+            if (_answerDirty && _showingAnswer)
+            {
+                text = _answerText.ToString();
+                _answerDirty = false;
+            }
+            tokens = _answerTokens;
+            first = _firstTokenSeconds;
+        }
+
+        double elapsed = _askWatch.Elapsed.TotalSeconds;
+        if (_askCts is not null)
+        {
+            _answer.SetStatus(first < 0
+                ? $"AI가 참고 문서 {_answerSourceCount}개를 읽는 중… {elapsed:F0}초  (이 PC에서는 보통 30초 안팎 · 그동안 아래 참고 문서를 먼저 보셔도 됩니다)"
+                : $"답변 작성 중… {tokens}토큰 · 초당 {Math.Max(0, tokens - 1) / Math.Max(0.1, elapsed - first):F1}토큰");
+        }
+
+        if (text is null) return;
+        var scroll = DocViewer.Template?.FindName("PART_ContentHost", DocViewer) as ScrollViewer;
+        bool atBottom = scroll is null || scroll.VerticalOffset >= scroll.ScrollableHeight - 40;
+        _answer.SetMarkdown(text);
+        if (atBottom) scroll?.ScrollToEnd();
     }
 
     // ── 예제 실행 ───────────────────────────────────────────

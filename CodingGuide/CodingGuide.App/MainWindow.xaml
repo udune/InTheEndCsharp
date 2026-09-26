@@ -50,6 +50,13 @@
                                     Background="Transparent" BorderThickness="0" Foreground="{StaticResource SubtleTextBrush}"
                                     Cursor="Hand" Visibility="Collapsed" Click="ClearButton_Click" ToolTip="검색어 지우기 (Esc)" />
                         </Grid>
+                        <DockPanel Margin="0,8,0,0">
+                            <Button x:Name="AskButton" DockPanel.Dock="Left" Style="{StaticResource PrimaryButton}" Content="AI에게 질문"
+                                    Padding="12,4" IsEnabled="False" Click="AskButton_Click" ToolTipService.ShowOnDisabled="True"
+                                    ToolTip="검색창의 질문을 로컬 AI에게 물어봅니다 (Ctrl+Enter)" />
+                            <TextBlock x:Name="AiStatus" Margin="10,0,0,0" VerticalAlignment="Center" FontSize="11.5"
+                                       Foreground="{StaticResource SubtleTextBrush}" TextTrimming="CharacterEllipsis" />
+                        </DockPanel>
                         <TextBlock x:Name="ResultInfo" Margin="2,8,0,0" Foreground="{StaticResource SubtleTextBrush}" FontSize="12" />
                     </StackPanel>
                 </Border>
@@ -103,6 +110,8 @@
                         <Button x:Name="BackButton" Style="{StaticResource ToolButton}" Content="◀ 이전" IsEnabled="False"
                                 Click="BackButton_Click" ToolTip="이전 문서 (Alt+←)" />
                         <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                            <Button x:Name="StopButton" Style="{StaticResource ToolButton}" Content="■ 답변 중지" Margin="0,0,8,0"
+                                    Visibility="Collapsed" Click="StopButton_Click" />
                             <Button x:Name="RunButton" Style="{StaticResource PrimaryButton}" Content="▶ 예제 실행" IsEnabled="False"
                                     Click="RunButton_Click" ToolTip="이 문서의 학습 예제를 실행합니다 (F5)" />
                         </StackPanel>
