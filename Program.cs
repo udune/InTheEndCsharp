@@ -1,5 +1,6 @@
 ﻿using InTheEndCsharp.값타입및선언;
 using InTheEndCsharp.구조체;
+using InTheEndCsharp.네임스페이스;
 using InTheEndCsharp.델리게이트;
 using InTheEndCsharp.람다;
 using InTheEndCsharp.린큐;
@@ -146,7 +147,9 @@ Action[] practiceArray =
     // 스레드풀.실행,
     
     // 비동기_async_await.실행,
-    비동기_진행흐름_UI가없는환경.실행
+    // 비동기_진행흐름_UI가없는환경.실행,
+    
+    네임스페이스.실행
 ];
 
 foreach (var practice in practiceArray)
