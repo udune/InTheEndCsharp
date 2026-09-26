@@ -33,7 +33,30 @@ internal sealed class AnswerDocument
             FontWeight = FontWeights.SemiBold,
             Margin = new Thickness(0, 0, 0, 2),
         });
-        Document.Blocks.Add(MarkdownRenderer.Heading(question, 1));
+        // 긴 질문은 첫 줄만 제목으로 쓰고, 전체 질문은 아래 인용 상자에 줄바꿈을 살려 보여준다.
+        string firstLine = question.Split('\n').Select(l => l.Trim()).FirstOrDefault(l => l.Length > 0) ?? question;
+        string title = firstLine.Length > 80 ? firstLine[..80] + "…" : firstLine;
+        Document.Blocks.Add(MarkdownRenderer.Heading(title, 1));
+        if (title != question.Trim())
+        {
+            var full = new Paragraph
+            {
+                FontFamily = new System.Windows.Media.FontFamily("D2Coding, Consolas, Malgun Gothic"),
+                FontSize = 13,
+                Background = MarkdownRenderer.Brush("CodeBackgroundBrush"),
+                BorderBrush = MarkdownRenderer.Brush("BorderBrush"),
+                BorderThickness = new Thickness(1),
+                Padding = new Thickness(12, 8, 12, 8),
+                Margin = new Thickness(0, 0, 0, 6),
+            };
+            var lines = question.Replace("\r\n", "\n").Split('\n');
+            for (int i = 0; i < lines.Length; i++)
+            {
+                full.Inlines.Add(new Run(lines[i]));
+                if (i < lines.Length - 1) full.Inlines.Add(new LineBreak());
+            }
+            Document.Blocks.Add(full);
+        }
         Document.Blocks.Add(new Paragraph(_status)
         {
             Foreground = MarkdownRenderer.Brush("SubtleTextBrush"),

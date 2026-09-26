@@ -197,6 +197,8 @@ public partial class MainWindow : Window
                 e.Handled = true;
                 break;
             case Key.Enter when Keyboard.Modifiers.HasFlag(ModifierKeys.Control):
+                // 검색어를 그대로 질문으로 보낸다 (질문 칸이 비어 있을 때)
+                if (QuestionBox.Text.Trim().Length == 0) QuestionBox.Text = SearchBox.Text;
                 _ = AskAsync();
                 e.Handled = true;
                 break;
@@ -321,6 +323,7 @@ public partial class MainWindow : Window
         {
             await Task.Run(() => _llm.LoadAsync(path, progress));
             AiStatus.Text = $"AI 준비됨 · {_llm.ModelName} · CPU · 오프라인";
+            AiStatus.ToolTip = $"사용 중인 모델 파일:\n{path}";
             AskButton.IsEnabled = true;
         }
         catch (Exception ex)
@@ -334,15 +337,38 @@ public partial class MainWindow : Window
 
     private void StopButton_Click(object sender, RoutedEventArgs e) => _askCts?.Cancel();
 
+    private void QuestionBox_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        int length = QuestionBox.Text.Length;
+        QuestionPlaceholder.Visibility = length == 0 ? Visibility.Visible : Visibility.Collapsed;
+        QuestionCounter.Text = length switch
+        {
+            0 => "",
+            > 1500 => $"{length:N0} / {QuestionBox.MaxLength:N0}자 · 길수록 첫 응답이 늦어집니다",
+            _ => $"{length:N0} / {QuestionBox.MaxLength:N0}자",
+        };
+    }
+
+    private void QuestionBox_PreviewKeyDown(object sender, KeyEventArgs e)
+    {
+        // Enter 는 줄바꿈, Ctrl+Enter 는 보내기
+        if (e.Key == Key.Enter && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
+        {
+            _ = AskAsync();
+            e.Handled = true;
+        }
+    }
+
     private async Task AskAsync()
     {
-        string question = SearchBox.Text.Trim();
+        string question = QuestionBox.Text.Trim();
         if (!_llm.IsLoaded || _askCts != null) return;
         if (question.Length == 0)
         {
-            SearchBox.Focus();
+            QuestionBox.Focus();
             return;
         }
+        QuestionBox.Clear();
 
         // 질문으로 가이드 문서를 찾아 근거 자료로 붙인다 (RAG).
         var rag = RagPromptBuilder.Build(question, _engine);

@@ -45,19 +45,40 @@
                                        Foreground="{StaticResource SubtleTextBrush}" />
                             <TextBlock x:Name="SearchPlaceholder" Margin="35,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"
                                        Foreground="#94A3B8" FontSize="14"
-                                       Text="무엇이든 물어보세요  예) 리스트 중복 제거, CS0103" />
+                                       Text="검색  예) 리스트 중복 제거, CS0103" />
                             <Button x:Name="ClearButton" Content="✕" HorizontalAlignment="Right" Width="26" Height="26" Margin="0,0,4,0"
                                     Background="Transparent" BorderThickness="0" Foreground="{StaticResource SubtleTextBrush}"
                                     Cursor="Hand" Visibility="Collapsed" Click="ClearButton_Click" ToolTip="검색어 지우기 (Esc)" />
                         </Grid>
+                        <TextBlock x:Name="ResultInfo" Margin="2,8,0,0" Foreground="{StaticResource SubtleTextBrush}" FontSize="12" />
+                    </StackPanel>
+                </Border>
+
+                <!-- 아래: AI 질문 입력 (여러 줄) -->
+                <Border DockPanel.Dock="Bottom" Padding="14,10,14,12" Background="{StaticResource CodeBackgroundBrush}"
+                        BorderBrush="{StaticResource BorderBrush}" BorderThickness="0,1,0,0">
+                    <StackPanel>
+                        <DockPanel Margin="0,0,0,6">
+                            <TextBlock x:Name="QuestionCounter" DockPanel.Dock="Right" FontSize="11" VerticalAlignment="Bottom"
+                                       Foreground="{StaticResource SubtleTextBrush}" />
+                            <TextBlock Text="AI에게 질문" FontWeight="SemiBold" Foreground="{StaticResource HeadingBrush}" />
+                        </DockPanel>
+                        <Grid>
+                            <TextBox x:Name="QuestionBox" AcceptsReturn="True" AcceptsTab="True" TextWrapping="Wrap" MaxLength="4000"
+                                     MinHeight="84" MaxHeight="220" VerticalScrollBarVisibility="Auto" Padding="8,6" FontSize="13.5"
+                                     BorderBrush="{StaticResource BorderBrush}"
+                                     TextChanged="QuestionBox_TextChanged" PreviewKeyDown="QuestionBox_PreviewKeyDown" />
+                            <TextBlock x:Name="QuestionPlaceholder" Margin="11,8,8,0" VerticalAlignment="Top" IsHitTestVisible="False"
+                                       Foreground="#94A3B8" FontSize="13" TextWrapping="Wrap"
+                                       Text="궁금한 점을 자세히 적어 주세요. 코드나 오류 메시지를 붙여 넣어도 됩니다.&#x0a;Enter: 줄바꿈 · Ctrl+Enter: 질문 보내기" />
+                        </Grid>
                         <DockPanel Margin="0,8,0,0">
-                            <Button x:Name="AskButton" DockPanel.Dock="Left" Style="{StaticResource PrimaryButton}" Content="AI에게 질문"
-                                    Padding="12,4" IsEnabled="False" Click="AskButton_Click" ToolTipService.ShowOnDisabled="True"
-                                    ToolTip="검색창의 질문을 로컬 AI에게 물어봅니다 (Ctrl+Enter)" />
-                            <TextBlock x:Name="AiStatus" Margin="10,0,0,0" VerticalAlignment="Center" FontSize="11.5"
+                            <Button x:Name="AskButton" DockPanel.Dock="Right" Style="{StaticResource PrimaryButton}" Content="질문 보내기"
+                                    Padding="14,4" IsEnabled="False" Click="AskButton_Click" ToolTipService.ShowOnDisabled="True"
+                                    ToolTip="로컬 AI에게 질문합니다 (Ctrl+Enter)" />
+                            <TextBlock x:Name="AiStatus" VerticalAlignment="Center" FontSize="11.5" Margin="0,0,8,0"
                                        Foreground="{StaticResource SubtleTextBrush}" TextTrimming="CharacterEllipsis" />
                         </DockPanel>
-                        <TextBlock x:Name="ResultInfo" Margin="2,8,0,0" Foreground="{StaticResource SubtleTextBrush}" FontSize="12" />
                     </StackPanel>
                 </Border>
 
