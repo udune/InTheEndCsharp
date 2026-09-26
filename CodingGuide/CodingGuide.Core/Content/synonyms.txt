@@ -1,0 +1,142 @@
+# 동의어 사전
+# 한 줄이 한 그룹입니다. 질문에 그룹의 표현 중 하나가 들어 있으면 나머지 표현으로도 함께 검색합니다.
+# - 한글 표현: 질문 안에 (공백 무시하고) 포함되면 일치  예) "걸러내고싶어" 에 "걸러" 포함
+# - 영문 표현: 질문의 영단어와 정확히 같아야 일치
+# 새 표현을 추가하려면 해당 줄 끝에 쉼표로 이어 쓰면 됩니다.
+
+# ── 컬렉션 / LINQ ─────────────────────────────
+걸러, 거르, 필터, 골라, 조건에 맞는, 조건에맞는, 추려, 만족하는, where, filter
+변환, 바꿔서, 매핑, 뽑아서, 속성만, select, map
+펼치, 평탄화, 리스트의 리스트, 중첩 리스트, selectmany, flatten
+정렬, 순서대로, 오름차순, 내림차순, 소팅, sort, orderby, 순서 정렬
+그룹, 묶어, 분류, 별로 합계, 별로 개수, 별 개수, groupby, 카테고리별
+합계, 총합, 더한 값, 전부 더, sum
+평균, average, 평균값
+최댓값, 최대값, 가장 큰, 제일 큰, 가장 많은, max, maxby
+최솟값, 최소값, 가장 작은, 제일 작은, min, minby
+개수, 몇 개, 갯수, 카운트, count, 세기
+중복, 중복제거, 중복 제거, 고유, 유니크, distinct, unique, hashset
+있는지, 존재, 포함, 들어있, 포함되어, contains, any, exists
+첫 번째, 첫번째, 하나만, 하나 찾, first, firstordefault, find
+마지막, 끝 요소, last, 맨 뒤
+앞에서, 상위, 몇 개만, 일부만, take, skip, 페이징, 페이지
+합치, 이어붙, 연결, 합쳐, concat, union, join, 병합
+두 리스트 비교, 차집합, 교집합, 공통, except, intersect
+리스트, 목록, 배열, 컬렉션, list, array, collection
+딕셔너리, 사전, 키 값, 키로 찾, 해시맵, 맵, dictionary, map, hashmap
+큐, 대기열, 선입선출, queue, fifo
+스택, 후입선출, 되돌리기, stack, lifo, undo
+삭제, 지우, 제거, 빼기, remove, delete
+추가, 넣기, 넣고, 삽입, add, insert, append
+뒤집, 역순, 거꾸로, reverse
+반복, 순회, 돌면서, 하나씩, loop, foreach, for, iterate
+랜덤, 무작위, 난수, 섞, 셔플, random, shuffle
+
+# ── 문자열 / 숫자 / 날짜 ─────────────────────
+문자열, 글자, 텍스트, string, text
+자르, 잘라, 부분 문자열, substring, 슬라이스, split, 분리
+붙이, 합치, join, concat, stringbuilder, 문자열 합치기
+공백 제거, 공백제거, 띄어쓰기 제거, trim, 스페이스 제거
+대문자, 소문자, toupper, tolower, 대소문자
+숫자로, 정수로, 문자열을 숫자, 숫자 변환, parse, tryparse, convert, 형변환
+형변환, 타입 변환, 캐스팅, 캐스트, cast, casting, 변환
+콤마, 쉼표, 천단위, 천 단위, 세자리, 포맷, 서식, format, tostring
+소수점, 소수 자리, 자리수, 자릿수, 반올림, round, 올림, 내림, 버림, ceiling, floor
+날짜, 시간, 오늘, 현재 시간, 요일, datetime, date, time, timespan
+경과 시간, 실행 시간, 걸린 시간, 속도 측정, 성능 측정, stopwatch, 벤치마크
+정규식, 정규 표현식, 패턴 검사, 형식 검사, 이메일 검사, 전화번호, regex
+
+# ── 파일 / 데이터 ────────────────────────────
+파일, 텍스트 파일, 파일 읽기, 파일 쓰기, 파일 저장, 저장, 불러오기, file, io
+폴더, 디렉토리, 디렉터리, 경로, directory, folder, path
+json, 제이슨, 직렬화, 역직렬화, serialize, deserialize
+csv, 엑셀, excel, 쉼표 구분
+설정, 설정 파일, 환경 설정, 환경변수, appsettings, config, configuration, options
+로그, 로깅, 기록, log, logging, logger
+닫기, 자원 해제, 리소스, dispose, using, idisposable
+
+# ── 클래스 / 객체지향 ────────────────────────
+클래스, 객체, 인스턴스, class, object, instance
+생성자, 초기화, constructor, new
+속성, 프로퍼티, getter, setter, property, get, set
+상속, 부모 클래스, 자식 클래스, 물려받, inheritance, base, 파생
+재정의, 오버라이드, override, virtual, 다형성
+추상, abstract, 추상 클래스
+인터페이스, interface, 계약
+정적, 전역, static, 공유 변수
+접근 제어자, 접근제어자, 공개, 비공개, public, private, protected, internal
+상수, 변하지 않는, 변경 불가, const, readonly, 불변, immutable
+구조체, 값 타입, struct, valuetype
+레코드, record, 데이터 클래스, dto
+제네릭, 일반화, 템플릿, generic, 타입 매개변수
+확장 메서드, 메서드 추가, extension
+튜플, 여러 값 반환, 여러개 반환, 다중 반환, tuple
+익명 타입, anonymous
+열거형, 상수 모음, enum
+널, null, 널 체크, null 체크, nullable, 값이 없
+패턴 매칭, 패턴, pattern, is, switch
+
+# ── 델리게이트 / 람다 / 이벤트 ────────────────
+델리게이트, 대리자, 메서드를 변수, 함수를 변수, 콜백, delegate, callback
+함수를 매개변수, 메서드를 매개변수, 함수를 인자, 메서드를 인자, 콜백
+람다, 화살표, 익명 함수, lambda, =>
+이벤트, 구독, 알림, 발생, event, 이벤트 핸들러, handler
+action, func, predicate, comparison
+
+# ── 예외 / 오류 ──────────────────────────────
+예외, 에러, 오류, 에러 처리, 예외 처리, exception, error, try, catch
+null 에러, 널 에러, 개체 참조, 인스턴스로 설정되지, nullreferenceexception, null reference
+인덱스, 범위를 벗어, 범위 초과, indexoutofrange, argumentoutofrange
+캐스트가 잘못, 캐스팅할 수 없, invalidcast
+시퀀스에 요소가 없, 요소가 없습니다, no elements, invalidoperation
+컬렉션이 수정, collection was modified, 순회 중 삭제, 반복 중 삭제
+키가 사전에 없, 지정한 키, keynotfound, key not found
+형식이 잘못, 입력 문자열, formatexception, format exception
+크로스 스레드, 다른 스레드가 이 개체를 소유, cross thread, invoke, dispatcher
+파일을 찾을 수 없, 경로의 일부, 액세스가 거부, 사용 중이므로, filenotfound, ioexception
+연결을 거부, ssl, httprequestexception, 서버 연결, 통신 오류
+프로그램이 꺼짐, 갑자기 종료, 강제 종료, 크래시, crash, 스택 오버플로, stackoverflow, 무한 재귀
+컴파일 오류, 빌드 오류, 빨간 줄, 빌드 에러, compile error
+이름이 현재 컨텍스트에 없, cs0103
+형식 또는 네임스페이스 이름을 찾을 수 없, cs0246
+암시적으로, 변환할 수 없습니다, cs0029, cs0266, cs1503
+개체 참조가 필요, cs0120
+정의가 포함되어 있지 않, cs1061
+코드 경로 중 일부만, cs0161
+할당되지 않은, cs0165
+이미 이 범위 안에 정의, cs0128, cs0136
+필수 매개 변수, cs7036
+인터페이스 멤버를 구현하지, cs0535, cs0534
+보호 수준 때문에, cs0122
+null 가능 참조, 역참조, cs8602, cs8600, cs8618, nullable 경고
+이 필요합니다, 세미콜론, cs1002, cs1513
+대기되지 않으므로, cs4014, await 안 함
+
+# ── 스레드 / 비동기 ──────────────────────────
+스레드, 쓰레드, 멀티스레드, 동시 실행, 병렬, thread, multithread, parallel
+경쟁 상태, 레이스 컨디션, 값이 이상, 숫자가 모자, 결과가 매번 다, race condition, 동시에 수정, 동시 접근
+잠금, 락, 동기화, 임계 영역, lock, monitor, mutex, 상호 배제
+세마포어, 동시에 몇 개, 동시 개수, 동시 요청 제한, semaphore, semaphoreslim, throttle
+비동기, 기다리, async, await, task, 논블로킹
+화면이 멈, 화면 멈춤, 응답 없음, 프리징, 멈춰, ui 멈춤, freeze
+백그라운드, 오래 걸리는, 무거운 작업, background
+동시에 여러, 모두 기다, 여러 작업, whenall, whenany
+취소, 중지, 멈추기, 그만, cancel, cancellation, 중단
+교착, 데드락, 영원히 멈, deadlock, .result, .wait
+진행률, 진행 상황, 프로그레스, progress, 퍼센트 표시
+몇 초마다, 주기적, 일정 간격, 반복 실행, 타이머, timer, 스케줄
+스레드 안전, 동시성 컬렉션, thread safe, concurrent, interlocked
+
+# ── 고급 / 실무 ──────────────────────────────
+리플렉션, 동적, 런타임에, 이름으로 호출, 문자열로 호출, reflection, 메타데이터
+어트리뷰트, 특성, 애트리뷰트, 대괄호, attribute, 어노테이션, annotation
+aop, 관점 지향, 인터셉터, 프록시, interceptor, proxy, 공통 기능
+의존성 주입, 의존성, di, ioc, 컨테이너, dependency injection, 주입
+싱글톤, 스코프, 트랜지언트, 생명 주기, 수명, singleton, scoped, transient, lifetime
+api, rest, 서버 통신, 웹 요청, http, httpclient, 통신
+post, 데이터 보내기, 전송, 요청 본문, 헤더, header
+서버 만들기, 백엔드, 컨트롤러, webapi, controller, aspnet
+테스트, 단위 테스트, 유닛 테스트, 검증, test, unittest, xunit, assert
+네임스페이스, using, namespace, 참조
+dll, 라이브러리, 어셈블리, 패키지, nuget, library, assembly
+콘솔, 입력 받, 사용자 입력, console, readline, 키 입력

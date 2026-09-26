@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="CodingGuide.Tests" />
+    </ItemGroup>
+
+    <!-- 지식 문서(마크다운)와 동의어 사전을 어셈블리에 포함한다. 오프라인 배포 시 파일이 따로 필요 없다. -->
+    <ItemGroup>
+        <EmbeddedResource Include="Content\**\*.md" LogicalName="kb/%(RecursiveDir)%(Filename)%(Extension)" />
+        <EmbeddedResource Include="Content\synonyms.txt" LogicalName="synonyms.txt" />
+    </ItemGroup>
+
+    <!-- 저장소 루트의 학습 예제 소스(.cs)를 "예제 코드" 탭에 보여주기 위해 포함한다. -->
+    <PropertyGroup>
+        <LessonRoot>$(MSBuildThisFileDirectory)..\..\</LessonRoot>
+    </PropertyGroup>
+    <ItemGroup>
+        <EmbeddedResource Include="$(LessonRoot)**\*.cs"
+                          Exclude="$(LessonRoot)CodingGuide\**;$(LessonRoot)**\obj\**;$(LessonRoot)**\bin\**;$(LessonRoot)**\*.Designer.cs;$(LessonRoot)Program.cs"
+                          LogicalName="src/%(RecursiveDir)%(Filename)%(Extension)"
+                          Link="LessonSources\%(RecursiveDir)%(Filename)%(Extension)" />
+    </ItemGroup>
+
+</Project>

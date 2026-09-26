@@ -10,7 +10,7 @@
     <!-- 하위 폴더의 별도 프로젝트(AsyncUI, APIApp 등)는 이 콘솔 프로젝트의 빌드 대상에서 제외한다.
          새 프로젝트를 하위 폴더에 추가하면 여기에 "폴더명\**"을 ;로 이어 붙인다. -->
     <PropertyGroup>
-      <SubProjectDirs>AsyncUI\**;APIApp\**;APIBackend\**;Tests\**</SubProjectDirs>
+      <SubProjectDirs>AsyncUI\**;APIApp\**;APIBackend\**;Tests\**;CodingGuide\**</SubProjectDirs>
     </PropertyGroup>
     <ItemGroup>
       <Compile Remove="$(SubProjectDirs)" />
