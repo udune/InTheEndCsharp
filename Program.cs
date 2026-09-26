@@ -3,6 +3,7 @@ using InTheEndCsharp.구조체;
 using InTheEndCsharp.네임스페이스;
 using InTheEndCsharp.델리게이트;
 using InTheEndCsharp.람다;
+using InTheEndCsharp.리플렉션;
 using InTheEndCsharp.린큐;
 using InTheEndCsharp.문자열;
 using InTheEndCsharp.배열;
@@ -149,7 +150,17 @@ Action[] practiceArray =
     // 비동기_async_await.실행,
     // 비동기_진행흐름_UI가없는환경.실행,
     
-    네임스페이스.실행
+    // 네임스페이스.실행
+    
+    리플렉션_메타정보가져오기.실행,
+    리플렉션_속성정보불러오기.실행,
+    리플렉션_메서드정보불러오기.실행,
+    리플렉션_인스턴스생성.실행,
+    리플렉션_동적속성값읽기.실행,
+    리플렉션_동적속성값쓰기.실행,
+    리플렉션_동적필드읽고쓰기.실행,
+    리플렉션_동적메서드호출.실행,
+    리플렉션_동적속성읽고쓸때주의할점.실행
 ];
 
 foreach (var practice in practiceArray)
