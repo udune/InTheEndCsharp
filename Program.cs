@@ -9,6 +9,7 @@ using InTheEndCsharp.문자열;
 using InTheEndCsharp.배열;
 using InTheEndCsharp.비동기;
 using InTheEndCsharp.스레드;
+using InTheEndCsharp.어트리뷰트;
 using InTheEndCsharp.연산자;
 using InTheEndCsharp.열거및컬렉션;
 using InTheEndCsharp.예외처리;
@@ -70,27 +71,27 @@ Action[] practiceArray =
     // 상속_접근제어자.실행,
     // 상속_추상클래스.실행,
     // 상속_상속체인.실행,
-    // 상속_sealed.실행
+    // 상속_sealed.실행,
     
     // 인터페이스.실행,
     // 인터페이스_다중구현.실행,
     // 인터페이스_명시적구현.실행,
-    // 인터페이스_디폴트구현.실행
+    // 인터페이스_디폴트구현.실행,
     
     // 타입명시적변환.실행,
     // 오브젝트_박싱_언박싱.실행,
     // 타입변환.실행,
     // 타입변환_ConvertClass.실행,
-    // 타입변환_is.실행
+    // 타입변환_is.실행,
     
-    // 구조체_class와비교.실행
+    // 구조체_class와비교.실행,
     
     // 제네릭정의및기초.실행,
     // 제네릭_제약조건_struct_class.실행,
     // 제네릭_제약조건_new.실행,
     // 제네릭_제약조건_classtype.실행,
     // 제네릭_제약조건_interface.실행,
-    // 제네릭_class.실행
+    // 제네릭_class.실행,
     
     // 델리게이트_정의및매개변수가없는.실행,
     // 델리게이트_매개변수가있는_반환값이있는.실행,
@@ -114,7 +115,7 @@ Action[] practiceArray =
     // 컬렉션_List_역순및정렬.실행,
     // 컬렉션_List_기타메서드.실행,
     // 컬렉션_Queue.실행,
-    // 컬렉션_Stack.실행
+    // 컬렉션_Stack.실행,
     
     // 린큐_정의.실행,
     // 린큐_쿼리_구조및기초.실행,
@@ -150,17 +151,27 @@ Action[] practiceArray =
     // 비동기_async_await.실행,
     // 비동기_진행흐름_UI가없는환경.실행,
     
-    // 네임스페이스.실행
+    // 네임스페이스.실행,
     
-    리플렉션_메타정보가져오기.실행,
-    리플렉션_속성정보불러오기.실행,
-    리플렉션_메서드정보불러오기.실행,
-    리플렉션_인스턴스생성.실행,
-    리플렉션_동적속성값읽기.실행,
-    리플렉션_동적속성값쓰기.실행,
-    리플렉션_동적필드읽고쓰기.실행,
-    리플렉션_동적메서드호출.실행,
-    리플렉션_동적속성읽고쓸때주의할점.실행
+    // 리플렉션_메타정보가져오기.실행,
+    // 리플렉션_속성정보불러오기.실행,
+    // 리플렉션_메서드정보불러오기.실행,
+    // 리플렉션_인스턴스생성.실행,
+    // 리플렉션_동적속성값읽기.실행,
+    // 리플렉션_동적속성값쓰기.실행,
+    // 리플렉션_동적필드읽고쓰기.실행,
+    // 리플렉션_동적메서드호출.실행,
+    // 리플렉션_동적속성읽고쓸때주의할점.실행,
+    
+    Attribute정의및적용하기_Obsolete_Conditional.실행,
+    매개변수에서사용되는Attributes.실행,
+    CustomAttribute생성.실행,
+    CustomAttribute생성자매개변수_속성추가.실행,
+    CustomAttribute동적제어.실행,
+    CustomAttribute활용예제_메타정보읽어오기.실행,
+    CustomAttribute실전활용예제_Property.실행,
+    AOP_AspectOrientedProgramming구현.실행,
+    CustomAttribute실전활용예제_Parameter.실행
 ];
 
 foreach (var practice in practiceArray)

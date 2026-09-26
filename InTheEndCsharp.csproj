@@ -13,5 +13,8 @@
       <EmbeddedResource Remove="AsyncUI\**" />
       <None Remove="AsyncUI\**" />
     </ItemGroup>
+    <ItemGroup>
+      <PackageReference Include="Castle.Core" Version="5.2.1" />
+    </ItemGroup>
 
 </Project>
