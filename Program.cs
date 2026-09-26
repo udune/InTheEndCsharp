@@ -13,6 +13,7 @@ using InTheEndCsharp.어트리뷰트;
 using InTheEndCsharp.연산자;
 using InTheEndCsharp.열거및컬렉션;
 using InTheEndCsharp.예외처리;
+using InTheEndCsharp.의존성주입;
 using InTheEndCsharp.인터페이스;
 using InTheEndCsharp.제네릭;
 using InTheEndCsharp.조건문;
@@ -163,15 +164,26 @@ Action[] practiceArray =
     // 리플렉션_동적메서드호출.실행,
     // 리플렉션_동적속성읽고쓸때주의할점.실행,
     
-    Attribute정의및적용하기_Obsolete_Conditional.실행,
-    매개변수에서사용되는Attributes.실행,
-    CustomAttribute생성.실행,
-    CustomAttribute생성자매개변수_속성추가.실행,
-    CustomAttribute동적제어.실행,
-    CustomAttribute활용예제_메타정보읽어오기.실행,
-    CustomAttribute실전활용예제_Property.실행,
-    AOP_AspectOrientedProgramming구현.실행,
-    CustomAttribute실전활용예제_Parameter.실행
+    // Attribute정의및적용하기_Obsolete_Conditional.실행,
+    // 매개변수에서사용되는Attributes.실행,
+    // CustomAttribute생성.실행,
+    // CustomAttribute생성자매개변수_속성추가.실행,
+    // CustomAttribute동적제어.실행,
+    // CustomAttribute활용예제_메타정보읽어오기.실행,
+    // CustomAttribute실전활용예제_Property.실행,
+    // AOP_AspectOrientedProgramming구현.실행,
+    // CustomAttribute실전활용예제_Parameter.실행,
+    
+    DI사용하지않는수동주입.실행,
+    DI컨테이너생성및생명주기.실행,
+    DI적용_서비스로케이터패턴_생성자주입.실행,
+    DI인터페이스적용.실행,
+    DI리팩토링.실행,
+    DIAddScoped생명주기및AddTransient_AddSingleton과비교.실행,
+    DI서비스구현체직접등록하기.실행,
+    DI서비스구현체직접등록하기_Provider사용.실행,
+    DI제네릭타입서비스등록방법_Closed_Open.실행,
+    환경변수의존성주입을사용하여불러오기_appsettings_json.실행
 ];
 
 foreach (var practice in practiceArray)

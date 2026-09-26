@@ -12,9 +12,16 @@
       <Compile Remove="AsyncUI\**" />
       <EmbeddedResource Remove="AsyncUI\**" />
       <None Remove="AsyncUI\**" />
+      <None Update="의존성주입\appsettings.json" Link="appsettings.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
     <ItemGroup>
       <PackageReference Include="Castle.Core" Version="5.2.1" />
+      <PackageReference Include="Microsoft.Extensions.Configuration" Version="11.0.0-rc.1.26425.128" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="11.0.0-rc.1.26425.128" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="11.0.0-rc.1.26425.128" />
+      <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="11.0.0-rc.1.26425.128" />
     </ItemGroup>
 
 </Project>
