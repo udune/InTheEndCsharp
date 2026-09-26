@@ -4,6 +4,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InTheEndCsharp", "InTheEndC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncUI", "AsyncUI\AsyncUI.csproj", "{013D853E-EE82-4606-850F-DD5975E0F32B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIApp", "APIApp\APIApp.csproj", "{0B28F207-C97C-4C29-B89D-B046DD615E92}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIBackend", "APIBackend\APIBackend.csproj", "{2308CA4F-15E3-4851-9A84-ACC63E49B0FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,13 @@ Global
 		{013D853E-EE82-4606-850F-DD5975E0F32B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{013D853E-EE82-4606-850F-DD5975E0F32B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{013D853E-EE82-4606-850F-DD5975E0F32B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B28F207-C97C-4C29-B89D-B046DD615E92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B28F207-C97C-4C29-B89D-B046DD615E92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B28F207-C97C-4C29-B89D-B046DD615E92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B28F207-C97C-4C29-B89D-B046DD615E92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2308CA4F-15E3-4851-9A84-ACC63E49B0FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2308CA4F-15E3-4851-9A84-ACC63E49B0FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2308CA4F-15E3-4851-9A84-ACC63E49B0FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2308CA4F-15E3-4851-9A84-ACC63E49B0FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

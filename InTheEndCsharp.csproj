@@ -7,11 +7,18 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
-    <!-- AsyncUI는 별도 WinForms 프로젝트이므로 이 콘솔 프로젝트의 빌드 대상에서 제외한다. -->
+    <!-- 하위 폴더의 별도 프로젝트(AsyncUI, APIApp 등)는 이 콘솔 프로젝트의 빌드 대상에서 제외한다.
+         새 프로젝트를 하위 폴더에 추가하면 여기에 "폴더명\**"을 ;로 이어 붙인다. -->
+    <PropertyGroup>
+      <SubProjectDirs>AsyncUI\**;APIApp\**;APIBackend\**</SubProjectDirs>
+    </PropertyGroup>
     <ItemGroup>
-      <Compile Remove="AsyncUI\**" />
-      <EmbeddedResource Remove="AsyncUI\**" />
-      <None Remove="AsyncUI\**" />
+      <Compile Remove="$(SubProjectDirs)" />
+      <EmbeddedResource Remove="$(SubProjectDirs)" />
+      <None Remove="$(SubProjectDirs)" />
+      <Content Remove="$(SubProjectDirs)" />
+    </ItemGroup>
+    <ItemGroup>
       <None Update="의존성주입\appsettings.json" Link="appsettings.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
